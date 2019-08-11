@@ -1,6 +1,7 @@
 package server;
 
 import java.io.DataInputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -59,8 +60,9 @@ public class FileServer extends Thread {
 	
 	public static void main(String[] args) {
 		Properties prop = new Properties();
-		InputStream input = FileServer.class.getClassLoader().getResourceAsStream("server.properties");
+		//InputStream input = FileServer.class.getClassLoader().getResourceAsStream("server.properties");
 	    try {
+			InputStream input = new FileInputStream("server.properties");
 			prop.load(input);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -35,8 +35,9 @@ public class FileClient {
 	
 	public static void main(String[] args) {
 		Properties prop = new Properties();
-		InputStream input = FileClient.class.getClassLoader().getResourceAsStream("client.properties");
+		//InputStream input = FileClient.class.getClassLoader().getResourceAsStream("client.properties");
 	    try {
+	    	InputStream input = new FileInputStream("client.properties");
 			prop.load(input);
 		} catch (IOException e) {
 			e.printStackTrace();
