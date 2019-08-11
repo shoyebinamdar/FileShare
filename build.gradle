@@ -41,13 +41,24 @@ sourceSets {
 } 
 
 //create a single Jar with all dependencies
-task fatJar(type: Jar) {
+task clientJar(type: Jar) {
 	manifest {
-        attributes 'Implementation-Title': 'Server Jar',  
+        attributes 'Implementation-Title': 'Client Jar',  
         	'Implementation-Version': 1.8,
         	'Main-Class': 'client.FileClient'
     }
-    baseName = project.name + '-all'
+    baseName = 'FileClient'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task serverJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Server Jar',  
+        	'Implementation-Version': 1.8,
+        	'Main-Class': 'server.FileServer'
+    }
+    baseName = 'FileServer'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
